@@ -30,6 +30,7 @@ public:
 
     string getHeadName() { return head->name; }
     string getTailName() { return tail->name; }
+    bool empty() { return head == nullptr; }
 
     /*
     void insert_after(int value, int position) {
@@ -247,10 +248,10 @@ int main() {
         cout << "Time step #" << minute << ":\n";
         int prob;
 
-        // event 1, customer is served
+        // event 1, customer is served [FINISHED]
         prob = rand() % 100 + 1; // returns random number 1- 100
         // if probability is <=40 , function happens
-        if (prob <= 40) {
+        if (prob <= 40 && !line.empty()) {
             cout << "    " << line.getHeadName() << " is served\n";
             line.pop_front();
         }
@@ -263,7 +264,7 @@ int main() {
             cout << "    " << newName << " joined the line\n";
         }
 
-        // event 3, customer at end of line leaves
+        // event 3, customer at end of line leaves [FINISHED]
         prob = rand() % 100 + 1;
         if (prob <= 20) {
             cout << "    " << line.getTailName() << " (at the rear) left the line\n";
@@ -273,6 +274,7 @@ int main() {
         // event 4, any particular customer leaves the line
         prob = rand() % 100 + 1;
         if (prob <= 10) {
+            int randPos = rand() % line.size() + 1;
             cout << "    " << " left the line\n";
         }
 
@@ -289,5 +291,7 @@ int main() {
         line.print();
     }
     
+    // FIX: IF LINE IS EMPTY
+
     return 0;
 }
