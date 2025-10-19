@@ -28,9 +28,22 @@ private:
 public:
     DoublyLinkedList() { head = nullptr; tail = nullptr; }
 
-    string getHeadName() { return head->name; }
-    string getTailName() { return tail->name; }
-    bool empty() { return head == nullptr; }
+    string getHeadName() { return head->name; } // returns first name in list
+    string getTailName() { return tail->name; } // returns last name is list
+    bool empty() { return head == nullptr; }    // returns null if list empty
+
+    // returns size of line
+    int size() {
+        int count = 0;
+        Node* temp = head;
+        while (temp) {
+            count++;
+            temp = temp->next;
+        }
+        return count;
+    }
+
+
 
     /*
     void insert_after(int value, int position) {
@@ -275,7 +288,8 @@ int main() {
         prob = rand() % 100 + 1;
         if (prob <= 10) {
             int randPos = rand() % line.size() + 1;
-            cout << "    " << " left the line\n";
+            cout << "    " << " left the line\n"; // NEED TO GET NAME AT SPECIFIC POS
+            line.delete_pos(randPos);
         }
 
         // event 5, VIP customer joins the front of the line [FINISHED]
@@ -290,8 +304,6 @@ int main() {
         cout << "    Resulting line:\n";
         line.print();
     }
-    
-    // FIX: IF LINE IS EMPTY
 
     return 0;
 }
