@@ -43,61 +43,10 @@ public:
         return count;
     }
 
-
-
     /*
-    void insert_after(int value, int position) {
-        if (position < 0) {
-            cout << "Position must be >= 0." << endl;
-            return;
-        }
-
-        Node* newNode = new Node(value);
-        if (!head) {
-            head = tail = newNode;
-            return;
-        }
-
+    string getNameAtPos(int pos) {
         Node* temp = head;
-        for (int i = 0; i < position && temp; ++i)
-            temp = temp->next;
-
-        if (!temp) {
-            cout << "Position exceeds list size. Node not inserted.\n";
-            delete newNode;
-            return;
-        }
-
-        newNode->next = temp->next;
-        newNode->prev = temp;
-        if (temp->next)
-            temp->next->prev = newNode;
-        else
-            tail = newNode;
-        temp->next = newNode;
-    }
-
-    void delete_val(string value) {
-        if (!head) return;
-
-        Node* temp = head;
-        
-        while (temp && temp->name != value)
-            temp = temp->next;
-
-        if (!temp) return; 
-
-        if (temp->prev)
-            temp->prev->next = temp->next;
-        else
-            head = temp->next; 
-
-        if (temp->next)
-            temp->next->prev = temp->prev;
-        else
-            tail = temp->prev; 
-
-        delete temp;
+        int count;
     }
     */
 
@@ -213,20 +162,6 @@ public:
         }
     }
 
-    /*
-    void print_reverse() {
-        Node* current = tail;
-        if (!current) { 
-            cout << "List is empty." << endl;
-            return;
-        }
-        while (current) {
-            cout << current->name << " ";
-            current = current->prev;
-        }
-        cout << endl;
-    }
-    */
 };
 
 int main() {
@@ -279,16 +214,16 @@ int main() {
 
         // event 3, customer at end of line leaves [FINISHED]
         prob = rand() % 100 + 1;
-        if (prob <= 20) {
+        if (prob <= 20 && !line.empty()) {
             cout << "    " << line.getTailName() << " (at the rear) left the line\n";
             line.pop_back();
         }
 
         // event 4, any particular customer leaves the line
         prob = rand() % 100 + 1;
-        if (prob <= 10) {
+        if (prob <= 10 && !line.empty()) {
             int randPos = rand() % line.size() + 1;
-            cout << "    " << " left the line\n"; // NEED TO GET NAME AT SPECIFIC POS
+            cout << "    " << line.getNameAtPos(randPos) << " left the line\n"; // NEED TO GET NAME AT SPECIFIC POS
             line.delete_pos(randPos);
         }
 
