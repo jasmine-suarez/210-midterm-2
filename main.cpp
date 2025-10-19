@@ -28,6 +28,9 @@ private:
 public:
     DoublyLinkedList() { head = nullptr; tail = nullptr; }
 
+    string getHeadName() { return head->name; }
+    string getTailName() { return tail->name; }
+
     /*
     void insert_after(int value, int position) {
         if (position < 0) {
@@ -248,7 +251,8 @@ int main() {
         prob = rand() % 100 + 1; // returns random number 1- 100
         // if probability is <=40 , function happens
         if (prob <= 40) {
-            cout << "    " << " is served\n";
+            cout << "    " << line.getHeadName() << " is served\n";
+            line.pop_front();
         }
 
         // event 2, customer joins line [FINISHED]
@@ -262,7 +266,8 @@ int main() {
         // event 3, customer at end of line leaves
         prob = rand() % 100 + 1;
         if (prob <= 20) {
-            cout << "    " << " (at the rear) left the line\n";
+            cout << "    " << line.getTailName() << " (at the rear) left the line\n";
+            line.pop_back();
         }
 
         // event 4, any particular customer leaves the line
@@ -278,7 +283,8 @@ int main() {
             line.push_front(vipName);
             cout << "    " << vipName << " (VIP) joins the front of the line\n";
         }
-        
+
+        // print line after each time period
         cout << "    Resulting line:\n";
         line.print();
     }
