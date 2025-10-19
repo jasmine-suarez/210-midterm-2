@@ -2,6 +2,9 @@
 // IDE used: VS Code
 
 #include <iostream>
+#include <string>
+#include <vector>
+#include <fstream>
 using namespace std;
 
 const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
@@ -9,11 +12,11 @@ const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
 class DoublyLinkedList {
 private:
     struct Node {
-        int data;
+        string name;
         Node* prev;
         Node* next;
         Node(int val, Node* p = nullptr, Node* n = nullptr) {
-            data = val; 
+            name = val; 
             prev = p;
             next = n;
         }
@@ -209,6 +212,17 @@ public:
 int main() {
     cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
 
+    vector<string> names;
+    ifstream fin;
+    fin.open("names.txt");
+    if (fin.good()) {
+        string name;
+        while (fin >> name)
+            names.push_back(name);
+        fin.close();
+    }
+    else
+        cout << "File not found.\n";
     
     return 0;
 }
