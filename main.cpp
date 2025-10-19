@@ -194,7 +194,6 @@ public:
             cout << "        " << current->name << endl;
             current = current->next;
         }
-        cout << endl;
     }
 
     /*
@@ -252,10 +251,12 @@ int main() {
             cout << "    " << " is served\n";
         }
 
-        // event 2, customer joins line
+        // event 2, customer joins line [FINISHED]
         prob = rand() % 100 + 1;
         if (prob <= 60) {
-            cout << "    " << " joined the line\n";
+            string newName = names[rand() % names.size()];
+            line.push_back(newName);
+            cout << "    " << newName << " joined the line\n";
         }
 
         // event 3, customer at end of line leaves
@@ -264,16 +265,22 @@ int main() {
             cout << "    " << " (at the rear) left the line\n";
         }
 
-
         // event 4, any particular customer leaves the line
         prob = rand() % 100 + 1;
-        if (prob)
+        if (prob <= 10) {
+            cout << "    " << " left the line\n";
+        }
 
-
-        // event 5, VIP customer joins the front of the line
+        // event 5, VIP customer joins the front of the line [FINISHED]
         prob = rand() % 100 + 1;
-
-
+        if (prob <= 10) {
+            string vipName = names[rand() % names.size()];
+            line.push_front(vipName);
+            cout << "    " << vipName << " (VIP) joins the front of the line\n";
+        }
+        
+        cout << "    Resulting line:\n";
+        line.print();
     }
     
     return 0;
