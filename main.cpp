@@ -9,8 +9,6 @@
 #include <ctime>
 using namespace std;
 
-const int MIN_NR = 10, MAX_NR = 99, MIN_LS = 5, MAX_LS = 20;
-
 class DoublyLinkedList {
 private:
     struct Node {
@@ -193,7 +191,7 @@ public:
             return;
         }
         while (current) {
-            cout << "\t\t" << current->name << endl;
+            cout << "        " << current->name << endl;
             current = current->next;
         }
         cout << endl;
@@ -216,8 +214,6 @@ public:
 };
 
 int main() {
-    cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS << endl;  // dummy statement to avoid compiler warning
-
     srand(time(0));
 
     vector<string> names;
@@ -233,14 +229,43 @@ int main() {
         cout << "File not found.\n";
 
     DoublyLinkedList line;
+
+    // store opens, first 5 customers in line
     cout << "Store opens:\n";
     for (int i = 0; i < 5; i++) {
         string newName = names[rand() % names.size()];
         line.push_back(newName);
-        cout << "\t" << newName << " joins the line\n";
+        cout << "    " << newName << " joins the line\n";
     }
-    cout << "\tResulting line:\n";
+    cout << "    Resulting line:\n";
     line.print();
+
+    // simulation starts
+    for (int minute = 2; minute <= 20; minute++) {
+        cout << "Time step #" << minute << ":\n";
+        int prob;
+
+        // event 1
+        prob = rand() % 100 + 1; // returns random number 1- 100
+        // if probability is <=40 , function happens
+
+        // event 2
+        prob = rand() % 100 + 1;
+
+
+        // event 3
+        prob = rand() % 100 + 1;
+
+
+        // event 4
+        prob = rand() % 100 + 1;
+
+
+        // event 5
+        prob = rand() % 100 + 1;
+
+
+    }
     
     return 0;
 }
