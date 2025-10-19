@@ -245,23 +245,32 @@ int main() {
         cout << "Time step #" << minute << ":\n";
         int prob;
 
-        // event 1
+        // event 1, customer is served
         prob = rand() % 100 + 1; // returns random number 1- 100
         // if probability is <=40 , function happens
+        if (prob <= 40) {
+            cout << "    " << " is served\n";
+        }
 
-        // event 2
+        // event 2, customer joins line
         prob = rand() % 100 + 1;
+        if (prob <= 60) {
+            cout << "    " << " joined the line\n";
+        }
 
-
-        // event 3
+        // event 3, customer at end of line leaves
         prob = rand() % 100 + 1;
+        if (prob <= 20) {
+            cout << "    " << " (at the rear) left the line\n";
+        }
 
 
-        // event 4
+        // event 4, any particular customer leaves the line
         prob = rand() % 100 + 1;
+        if (prob)
 
 
-        // event 5
+        // event 5, VIP customer joins the front of the line
         prob = rand() % 100 + 1;
 
 
