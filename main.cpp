@@ -43,16 +43,21 @@ public:
         return count;
     }
 
-    /*
     string getNameAtPos(int pos) {
         Node* temp = head;
-        int count;
+        int count = 1;
+        while (temp != nullptr) {
+            if (count == pos)
+                return temp->name;
+            temp = temp->next;
+            count++;
+        }
+        return "";
     }
-    */
-
+    
     void delete_pos(int pos) {
         if (!head) {
-            cout << "List is empty." << endl;
+            cout << "    List is empty." << endl;
             return;
         }
     
@@ -112,7 +117,7 @@ public:
     void pop_front() {
 
         if (!head) {
-            cout << "List is empty." << endl;
+            cout << "    List is empty." << endl;
             return;
         }
 
@@ -129,7 +134,7 @@ public:
 
     void pop_back() {
         if (!tail) {
-            cout << "List is empty." << endl;
+            cout << "    List is empty." << endl;
             return;
         }
         Node * temp = tail;
@@ -153,7 +158,7 @@ public:
     void print() {
         Node* current = head;
         if (!current) {
-            cout << "List is empty." << endl;
+            cout << "    List is empty." << endl;
             return;
         }
         while (current) {
@@ -227,12 +232,13 @@ int main() {
             line.delete_pos(randPos);
         }
 
-        // event 5, VIP customer joins the front of the line [FINISHED]
+        // event 5, VIP customer joins the front of the line and is served [FINISHED]
         prob = rand() % 100 + 1;
         if (prob <= 10) {
             string vipName = names[rand() % names.size()];
             line.push_front(vipName);
             cout << "    " << vipName << " (VIP) joins the front of the line\n";
+            line.pop_front();
         }
 
         // print line after each time period
