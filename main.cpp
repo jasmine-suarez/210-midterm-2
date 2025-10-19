@@ -193,12 +193,13 @@ public:
             return;
         }
         while (current) {
-            cout << current->name << " ";
+            cout << "\t\t" << current->name << endl;
             current = current->next;
         }
         cout << endl;
     }
 
+    /*
     void print_reverse() {
         Node* current = tail;
         if (!current) { 
@@ -211,10 +212,13 @@ public:
         }
         cout << endl;
     }
+    */
 };
 
 int main() {
-    cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS;  // dummy statement to avoid compiler warning
+    cout << MIN_NR + MIN_LS + MAX_NR + MAX_LS << endl;  // dummy statement to avoid compiler warning
+
+    srand(time(0));
 
     vector<string> names;
     ifstream fin;
@@ -227,6 +231,16 @@ int main() {
     }
     else
         cout << "File not found.\n";
+
+    DoublyLinkedList line;
+    cout << "Store opens:\n";
+    for (int i = 0; i < 5; i++) {
+        string newName = names[rand() % names.size()];
+        line.push_back(newName);
+        cout << "\t" << newName << " joins the line\n";
+    }
+    cout << "\tResulting line:\n";
+    line.print();
     
     return 0;
 }
